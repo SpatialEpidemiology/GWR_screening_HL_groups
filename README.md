@@ -1,3 +1,3 @@
 # GWR_screening_HL_subgroups
 
-spatialepidemiolgy.github.io/GWR_screening_HL_subgroups
+spatialepidemiology.github.io/GWR_screening_HL_subgroups
