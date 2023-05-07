@@ -49,7 +49,7 @@
 	  	 var cubUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cub_hot_gj.geojson';
 	    
       // initialize Leaflet
-            var myStyle = {'color':'#FF0000'};
+            var myStyle = {'color':'#FF0000','weight':1};
 var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
 	    
      var mexLayer = L.geoJson(null,{style:myStyle});
