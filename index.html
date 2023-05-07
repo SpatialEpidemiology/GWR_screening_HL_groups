@@ -20,13 +20,13 @@
     </style>
     <style>
     .legend {
-  padding: 6px 8px;
+  padding: 4px 6px;
   font: 12px Arial, Helvetica, sans-serif;
   background: white;
   background: rgba(255, 255, 255, 0.8);
-  /*box-shadow: 0 0 13px rgba(0, 0, 0, 0.2);*/
+  /*box-shadow: 0 0 11px rgba(0, 0, 0, 0.2);*/
   /*border-radius: 5px;*/
-  line-height: 24px;
+  line-height: 22px;
   color: #555;
 }
 .legend h4 {
@@ -84,7 +84,6 @@
 	    	 var domUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/dom_hot_gj.geojson';
 	  	 var cubUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cub_hot_gj.geojson';
 	    
-      // initialize Leaflet
             var myStyle = {'color':'#FF0000','weight':1};
 var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
 	    
@@ -120,12 +119,11 @@ var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
 		cubLayer.addData(data).addTo(map);
 	});
 	    
-     //Base layers definition and addition
 		var baseLayers = {
 			"Carto Light": cartoMap,
 			"USGS Imagery": USGSMap
 		};
-     //overlay layers definition and addition
+	    
 		var overLayers = {
 			"Mexican local coefficients": mexLayer,
 			"Puerto Rican local coefficients": prLayer,
@@ -134,7 +132,7 @@ var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
 			"Cuban local coefficients": cubLayer,
 			
 		};
-     //Add baseLayers to map as control layers
+
      L.control.layers(baseLayers).addTo(map);
      L.control.layers(overLayers).addTo(map);
  
