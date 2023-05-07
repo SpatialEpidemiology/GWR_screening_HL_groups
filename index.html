@@ -52,11 +52,21 @@
             var myStyle = {'color':'#FF0000','weight':1};
 var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
 	    
-     var mexLayer = L.geoJson(null,{style:myStyle});
-     var prLayer = L.geoJson(null,{style:myStyle});
-     var censLayer = L.geoJson(null,{style:myStyle});
-     var domLayer = L.geoJson(null,{style:myStyle});
-     var cubLayer = L.geoJson(null,{style:myStyle});
+     var mexLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+ }});
+     var prLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+ }});
+     var censLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+ }});
+     var domLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+ }});
+     var cubLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+ }});
 	    
      $.getJSON(mexUrl, function(data) {			
 		mexLayer.addData(data).addTo(map);
