@@ -49,13 +49,14 @@
 	  	 var cubUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cub_hot_gj.geojson';
 	    
       // initialize Leaflet
-      var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
+            var myStyle = {'color':'#FF0000'};
+var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
 	    
-     var mexLayer = L.geoJson(null);
-     var prLayer = L.geoJson(null);
-     var censLayer = L.geoJson(null);
-     var domLayer = L.geoJson(null);
-     var cubLayer = L.geoJson(null);
+     var mexLayer = L.geoJson(null,{style:myStyle});
+     var prLayer = L.geoJson(null,{style:myStyle});
+     var censLayer = L.geoJson(null,{style:myStyle});
+     var domLayer = L.geoJson(null,{style:myStyle});
+     var cubLayer = L.geoJson(null,{style:myStyle});
 	    
      $.getJSON(mexUrl, function(data) {			
 		mexLayer.addData(data).addTo(map);
