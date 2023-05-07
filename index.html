@@ -57,7 +57,7 @@
       let mexlayer = L.layerGroup().addTo( map )
       
       // fill that layer with data from a geojson file
-     jQuery.getJSON( "https://github.com/SpatialEpidemiology/GWR_screening_HL_subgroups/blob/247a54e69ac661eb117fab83d81a9116d37c289f/assets/mex_hot_gj.geojson", function( json ){
+     jQuery.getJSON( "https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cens_hot_gj.geojson", function( json ){
       L.geoJSON( json, {
       onEachFeature: addMyData,
        })
@@ -65,7 +65,7 @@
 	    
       // This function is run for every feature found in the geojson file. It adds the feature to the empty layer we created above
      function addMyData( feature, layer ){
-     mylayer.addLayer( layer )
+     mexlayer.addLayer( layer )
      // some other code can go here, like adding a popup with layer.bindPopup("Hello")
 }
      //Add baseLayers to map as control layers
