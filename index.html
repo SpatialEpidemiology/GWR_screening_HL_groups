@@ -88,7 +88,8 @@
 			
 		};
      //Add baseLayers to map as control layers
-     L.control.layers(baseLayers,overLayers).addTo(map);
+     L.control.layers(baseLayers).addTo(map);
+     L.control.layers(overLayers).addTo(map);
  
 	    
       // show the scale bar on the lower left corner
