@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
       html, body {
@@ -41,35 +41,55 @@
 			minZoom: 0,
 			maxZoom: 20,
 			ext: 'png'});
-	    
- 
+	    //geojson
+	         var mexUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/mex_hot_gj.geojson';
+	         var prUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/pr_hot_gj.geojson';
+	    	 var censUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cens_hot_gj.geojson';
+	    	 var domUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/dom_hot_gj.geojson';
+	  	 var cubUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cub_hot_gj.geojson';
 	    
       // initialize Leaflet
       var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
-
+	    
+     var mexLayer = L.geoJson(null);
+     var prLayer = L.geoJson(null);
+     var censLayer = L.geoJson(null);
+     var domLayer = L.geoJson(null);
+     var cubLayer = L.geoJson(null);
+	    
+     $.getJSON(mexUrl, function(data) {			
+		mexLayer.addData(data).addTo(map);
+	});
+     $.getJSON(prUrl, function(data) {			
+		prLayer.addData(data).addTo(map);
+	});
+     $.getJSON(censUrl, function(data) {			
+		censLayer.addData(data).addTo(map);
+	});
+     $.getJSON(domUrl, function(data) {			
+		domLayer.addData(data).addTo(map);
+	});
+     $.getJSON(cubUrl, function(data) {			
+		cubLayer.addData(data).addTo(map);
+	});
+	    
      //Base layers definition and addition
 		var baseLayers = {
 			"Carto Light": cartoMap,
 			"USGS Imagery": USGSMap
 		};
-	    
-      // create an operational layer that is empty for now
-      let mexlayer = L.layerGroup().addTo( map )
-      
-      // fill that layer with data from a geojson file
-     jQuery.getJSON( "https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cens_hot_gj.geojson", function( json ){
-      L.geoJSON( json, {
-      onEachFeature: addMyData,
-       })
-       })
-	    
-      // This function is run for every feature found in the geojson file. It adds the feature to the empty layer we created above
-     function addMyData( feature, layer ){
-     mexlayer.addLayer( layer )
-     // some other code can go here, like adding a popup with layer.bindPopup("Hello")
-}
+     //overlay layers definition and addition
+		var overLayers = {
+			"Mexican local coefficient disparity areas": mexLayer,
+			"Puerto Rican local coefficient disparity areas": prLayer,
+			"Central/South American local coefficient disparity areas": censLayer,
+			"Dominican local coefficient disparity areas": domLayer,
+			"Cuban local coefficient disparity areas": cubLayer,
+			
+		};
      //Add baseLayers to map as control layers
-     L.control.layers(baseLayers).addTo(map);
+     L.control.layers(baseLayers,overLayers).addTo(map);
+ 
 	    
       // show the scale bar on the lower left corner
       L.control.scale({imperial: true, metric: true}).addTo(map);
