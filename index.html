@@ -49,8 +49,9 @@
 	  
 		 //Add baseLayers to map as control layers
 		 L.control.layers(baseLayers).addTo(map);
+	    
       // show the scale bar on the lower left corner
-      L.control.scale({imperial: false, metric: false}).addTo(map);
+      L.control.scale({imperial: true, metric: true}).addTo(map);
 
     </script>
   </body>
