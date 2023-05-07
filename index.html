@@ -31,7 +31,7 @@
 		var USGSAttrib = 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>';
 
 		//Creation of map tiles
-		var cartoMap = L.tileLayer(osmURL, {attribution: cartoAttrib});
+		var cartoMap = L.tileLayer(cartoURL, {attribution: cartoAttrib});
 		var USGSMap = L.tileLayer(USGSURL, {attribution: USGSAttrib,
 	       	        subdomains: 'abcd',
 			minZoom: 0,
