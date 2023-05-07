@@ -77,79 +77,82 @@
 			minZoom: 0,
 			maxZoom: 20,
 			ext: 'png'});
-	    //geojson
+	    
+	        //geojson files
 	         var mexUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/mex_hot_gj.geojson';
 	         var prUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/pr_hot_gj.geojson';
 	    	 var censUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cens_hot_gj.geojson';
 	    	 var domUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/dom_hot_gj.geojson';
 	  	 var cubUrl = 'https://spatialepidemiology.github.io/GWR_screening_HL_subgroups/assets/cub_hot_gj.geojson';
+	         //color style for geojsons
+                 var myStyle = {'color':'#FF0000','weight':1};
 	    
-            var myStyle = {'color':'#FF0000','weight':1};
-var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
+	         //adding map
+                 var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
 	    
-     var mexLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
-   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
- }});
-     var prLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
-   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
- }});
-     var censLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
-   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
- }});
-     var domLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
-   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
- }});
-     var cubLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
-   l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
- }});
+                 var mexLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+                 l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+                 }});
+                 var prLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+                 l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+                 }});
+                 var censLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+                 l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+                 }});
+                 var domLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+                 l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+                 }});
+                 var cubLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
+                 l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
+                 }});
 	    
-     $.getJSON(mexUrl, function(data) {			
+         $.getJSON(mexUrl, function(data) {			
 		mexLayer.addData(data).addTo(map);
-	});
-     $.getJSON(prUrl, function(data) {			
+	 });
+         $.getJSON(prUrl, function(data) {			
 		prLayer.addData(data).addTo(map);
-	});
-     $.getJSON(censUrl, function(data) {			
+ 	 });
+         $.getJSON(censUrl, function(data) {			
 		censLayer.addData(data).addTo(map);
-	});
-     $.getJSON(domUrl, function(data) {			
+	 });
+         $.getJSON(domUrl, function(data) {			
 		domLayer.addData(data).addTo(map);
-	});
-     $.getJSON(cubUrl, function(data) {			
+	 });
+         $.getJSON(cubUrl, function(data) {			
 		cubLayer.addData(data).addTo(map);
-	});
+	 });
 	    
-		var baseLayers = {
-			"Carto Light": cartoMap,
-			"USGS Imagery": USGSMap
+         var baseLayers = {
+		"Carto Light": cartoMap,
+		"USGS Imagery": USGSMap
 		};
 	    
-		var overLayers = {
-			"Mexican": mexLayer,
-			"Puerto Rican": prLayer,
-			"Central/South American": censLayer,
-			"Dominican": domLayer,
-			"Cuban": cubLayer,
+	var overLayers = {
+		"Mexican": mexLayer,
+		"Puerto Rican": prLayer,
+		"Central/South American": censLayer,
+		"Dominican": domLayer,
+		"Cuban": cubLayer,
 			
 		};
 
-     L.control.layers(baseLayers).addTo(map);
-     L.control.layers(overLayers).addTo(map);
+        L.control.layers(baseLayers).addTo(map);
+        L.control.layers(overLayers).addTo(map);
  
 	    
-      // show the scale bar on the lower left corner
-      L.control.scale({imperial: true, metric: true}).addTo(map);
+        // show the scale bar on the lower left corner
+        L.control.scale({imperial: true, metric: true}).addTo(map);
 
-var legend = L.control({ position: "bottomright"});
+        var legend = L.control({ position: "bottomright"});
 
-legend.onAdd = function(map) {
-  var div = L.DomUtil.create("div", "legend");
-  div.innerHTML += "<h4>Hispanic subgroup CRC screening disparity areas</h4>";
-  div.innerHTML += '<i style="background: #FF0000"></i><span>Disparity areas</span><br>';
-  return div;
-};
+       legend.onAdd = function(map) {
+          var div = L.DomUtil.create("div", "legend");
+          div.innerHTML += "<h4>Hispanic subgroup CRC screening disparity areas</h4>";
+          div.innerHTML += '<i style="background: #FF0000"></i><span>Disparity areas</span><br>';
+        return div;
+       };
 
-legend.addTo(map);
+        legend.addTo(map);
 
     </script>
   </body>
