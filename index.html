@@ -89,6 +89,7 @@
 	         //adding map
                  var map = L.map('map',{layers: [cartoMap]}).setView([38.4, -95], 4.5);
 	    
+	         //defining geojson layers
                  var mexLayer = L.geoJson(null,{style:myStyle, onEachFeature: function (f, l) {
                  l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
                  }});
@@ -105,6 +106,7 @@
                  l.bindPopup('<pre>'+JSON.stringify(f.properties,null,' ').replace(/[\{\}"]/g,'')+'</pre>');
                  }});
 	    
+	 //adding geojsons to map   
          $.getJSON(mexUrl, function(data) {			
 		mexLayer.addData(data).addTo(map);
 	 });
@@ -120,7 +122,8 @@
          $.getJSON(cubUrl, function(data) {			
 		cubLayer.addData(data).addTo(map);
 	 });
-	    
+	 
+	 //defining layers for control
          var baseLayers = {
 		"Carto Light": cartoMap,
 		"USGS Imagery": USGSMap
@@ -134,13 +137,14 @@
 		"Cuban": cubLayer,
 			
 		};
-
+        //layer control tool
         L.control.layers(baseLayers,overLayers,{collapsed:false}).addTo(map);
  
         L.control.scale({imperial: true, metric: true}).addTo(map);
-
+        
+	//legend options
         var legend = L.control({ position: "bottomright"});
-
+        //adding legend to map
         legend.onAdd = function(map) {
           var div = L.DomUtil.create("div", "legend");
           div.innerHTML += "<h4>Hispanic/Latino subgroup CRC screening GWR results</h4>";
