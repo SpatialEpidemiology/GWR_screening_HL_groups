@@ -135,8 +135,7 @@
 			
 		};
 
-        L.control.layers(baseLayers).addTo(map);
-        L.control.layers(overLayers).addTo(map);
+        L.control.layers(baseLayers,overLayers,{collapsed:false}).addTo(map);
  
         L.control.scale({imperial: true, metric: true}).addTo(map);
 
